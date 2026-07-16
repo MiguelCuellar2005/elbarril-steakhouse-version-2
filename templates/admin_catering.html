@@ -43,6 +43,9 @@
                             <a href="{{ url_for('catering_toggle', id=s.id) }}" class="btn-editar">
                                 {% if s.atendida %}Marcar pendiente{% else %}Marcar atendida{% endif %}
                             </a>
+                            <a href="{{ url_for('catering_eliminar', id=s.id) }}" class="btn-eliminar" onclick="return confirm('¿Eliminar esta solicitud?')">
+                                <i class="fas fa-trash"></i>
+                            </a>
                         </td>
                     </tr>
                     {% if s.mensaje %}

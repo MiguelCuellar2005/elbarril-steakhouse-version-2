@@ -22,7 +22,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
-# Validación fail-fast: si falta una variable clave, no arranca
 _requeridas = ['SECRET_KEY', 'ADMIN_USERNAME', 'ADMIN_PASSWORD']
 _faltantes = [v for v in _requeridas if not os.environ.get(v)]
 if _faltantes:
@@ -503,6 +502,16 @@ def catering_toggle(id):
     solicitud = SolicitudCatering.query.get_or_404(id)
     solicitud.atendida = not solicitud.atendida
     db.session.commit()
+    return redirect(url_for('admin_catering'))
+
+
+@app.route('/admin/catering/eliminar/<int:id>')
+@login_required
+def catering_eliminar(id):
+    solicitud = SolicitudCatering.query.get_or_404(id)
+    db.session.delete(solicitud)
+    db.session.commit()
+    flash('Solicitud eliminada')
     return redirect(url_for('admin_catering'))
 
 
