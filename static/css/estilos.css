@@ -77,7 +77,7 @@ ul   { list-style: none; }
 .hero::before {
     content: '';
     position: absolute; inset: 0;
-    background: url('../uploads/hero.jpg') center/cover no-repeat;
+    background: url('../uploads/hero.jpeg') center/cover no-repeat;
     opacity: 0.4;
 }
 .hero-overlay {
