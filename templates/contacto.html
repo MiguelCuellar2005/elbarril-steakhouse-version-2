@@ -6,13 +6,13 @@
 
 <section class="contacto" style="padding-top: 7rem;">
     <div class="section-header">
-        <h2>Contáctanos</h2>
-        <p>Parrilla caliente y sazón latino esperándote</p>
+        <h2>{{ t('contacto_titulo') }}</h2>
+        <p>{{ t('contacto_sub') }}</p>
     </div>
 
     <div style="text-align:center; margin-bottom: 3rem;">
         <a href="https://wa.me/14189066654" target="_blank" class="btn-whatsapp">
-            <i class="fab fa-whatsapp"></i> Escríbenos por WhatsApp
+            <i class="fab fa-whatsapp"></i> {{ t('btn_whatsapp') }}
         </a>
     </div>
 
@@ -20,57 +20,57 @@
         <div class="contacto-info">
             <div class="info-card">
                 <i class="fas fa-phone"></i>
-                <h3>Llámanos</h3>
+                <h3>{{ t('llamanos') }}</h3>
                 <p><a href="tel:+14189066654">418-906-6654</a></p>
             </div>
             <div class="info-card">
                 <i class="fas fa-comment-sms"></i>
-                <h3>Mensaje de texto</h3>
+                <h3>{{ t('sms_titulo') }}</h3>
                 <p><a href="sms:+14189066654">418-906-6654</a></p>
             </div>
             <div class="info-card">
                 <i class="fas fa-location-dot"></i>
-                <h3>Nuestro cuartel general</h3>
+                <h3>{{ t('cuartel_titulo') }}</h3>
                 <p>990 Rte de l'Église, Québec, QC</p>
             </div>
         </div>
 
         <div class="admin-form">
-            <h2>Catering para tus eventos</h2>
+            <h2>{{ t('catering_form_titulo') }}</h2>
             <form method="POST" action="{{ url_for('contacto') }}">
                 <div class="form-group">
-                    <label>Nombre completo</label>
+                    <label>{{ t('form_nombre') }}</label>
                     <input type="text" name="nombre" required>
                 </div>
                 <div class="form-group">
-                    <label>Teléfono</label>
+                    <label>{{ t('form_telefono') }}</label>
                     <input type="tel" name="telefono" required>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Fecha del evento</label>
+                        <label>{{ t('form_fecha') }}</label>
                         <input type="date" name="fecha_evento">
                     </div>
                     <div class="form-group">
-                        <label>Número de personas</label>
+                        <label>{{ t('form_personas') }}</label>
                         <input type="number" name="num_personas" placeholder="Ej. 20">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Tipo de evento</label>
+                    <label>{{ t('form_tipo_evento') }}</label>
                     <select name="tipo_evento">
-                        <option value="">Selecciona...</option>
-                        <option>Boda</option>
-                        <option>Cumpleaños</option>
-                        <option>Evento Corporativo</option>
-                        <option>Otro</option>
+                        <option value="">{{ t('form_seleccione') }}</option>
+                        <option>{{ t('form_boda') }}</option>
+                        <option>{{ t('form_cumple') }}</option>
+                        <option>{{ t('form_corporativo') }}</option>
+                        <option>{{ t('form_otro') }}</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Mensaje</label>
-                    <textarea name="mensaje" rows="4" placeholder="Cuéntanos más detalles..."></textarea>
+                    <label>{{ t('form_mensaje') }}</label>
+                    <textarea name="mensaje" rows="4" placeholder="{{ t('form_mensaje') }}"></textarea>
                 </div>
-                <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">Enviar Solicitud</button>
+                <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">{{ t('form_enviar') }}</button>
             </form>
         </div>
     </div>

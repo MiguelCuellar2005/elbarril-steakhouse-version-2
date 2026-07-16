@@ -7,6 +7,7 @@ from datetime import datetime, date
 import os
 import uuid
 from dotenv import load_dotenv
+from traducciones import traducir
 
 load_dotenv()
 
@@ -217,7 +218,12 @@ def cambiar_idioma(lang):
 
 @app.context_processor
 def inject_idioma():
-    return {'idioma': session.get('idioma', 'es')}
+    idioma_actual = session.get('idioma', 'es')
+
+    def t(clave):
+        return traducir(clave, idioma_actual)
+
+    return {'idioma': idioma_actual, 't': t}
 
 
 # ── Autenticación ─────────────────────────────────────────────────────────────

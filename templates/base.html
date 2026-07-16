@@ -10,7 +10,6 @@
 </head>
 <body>
 
-    <!-- NAVBAR -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="{{ url_for('index') }}" class="nav-logo">
@@ -20,14 +19,14 @@
                 <i class="fas fa-bars"></i>
             </button>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="{{ url_for('index') }}" class="nav-link">Inicio</a></li>
-                <li><a href="{{ url_for('menu') }}" class="nav-link">Menú</a></li>
-                <li><a href="{{ url_for('galeria') }}" class="nav-link">Galería</a></li>
-                <li><a href="{{ url_for('index') }}#nosotros" class="nav-link">Nosotros</a></li>
-                <li><a href="{{ url_for('contacto') }}" class="nav-link">Contacto</a></li>
+                <li><a href="{{ url_for('index') }}" class="nav-link">{{ t('nav_inicio') }}</a></li>
+                <li><a href="{{ url_for('menu') }}" class="nav-link">{{ t('nav_menu') }}</a></li>
+                <li><a href="{{ url_for('galeria') }}" class="nav-link">{{ t('nav_galeria') }}</a></li>
+                <li><a href="{{ url_for('index') }}#nosotros" class="nav-link">{{ t('nav_nosotros') }}</a></li>
+                <li><a href="{{ url_for('contacto') }}" class="nav-link">{{ t('nav_contacto') }}</a></li>
                 <li>
                     <a href="https://wa.me/14189066654" target="_blank" class="nav-btn">
-                        <i class="fab fa-whatsapp"></i> Pedir Ya
+                        <i class="fab fa-whatsapp"></i> {{ t('nav_pedir') }}
                     </a>
                 </li>
                 <li>
@@ -41,7 +40,6 @@
         </div>
     </nav>
 
-    <!-- MENSAJES FLASH -->
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             <div class="flash-messages">
@@ -52,23 +50,21 @@
         {% endif %}
     {% endwith %}
 
-    <!-- CONTENIDO -->
     {% block content %}{% endblock %}
 
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-logo">
                 <img src="{{ url_for('static', filename='uploads/logo.jpeg') }}" alt="El Barril Steak House" height="80">
-                <p class="footer-slogan">Sabor a Leña</p>
+                <p class="footer-slogan">{{ t('footer_slogan') }}</p>
             </div>
             <div class="footer-info">
-                <h3>Encuéntranos</h3>
+                <h3>{{ t('footer_encuentranos') }}</h3>
                 <p><i class="fas fa-map-marker-alt"></i> QG: 990 Rte de l'Église, Québec, QC</p>
                 <p><i class="fas fa-phone"></i> 418-906-6654</p>
             </div>
             <div class="footer-social">
-                <h3>Síguenos</h3>
+                <h3>{{ t('footer_siguenos') }}</h3>
                 <a href="https://instagram.com/elbarrilsteakhouse" target="_blank">
                     <i class="fab fa-instagram"></i> @elbarrilsteakhouse
                 </a>
@@ -76,12 +72,12 @@
                     <i class="fab fa-facebook"></i> elbarrilsteakhouse
                 </a>
                 <a href="https://wa.me/14189066654" target="_blank">
-                    <i class="fab fa-whatsapp"></i> Escríbenos
+                    <i class="fab fa-whatsapp"></i> {{ t('footer_escribenos') }}
                 </a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 El Barril Steak House · Todos los derechos reservados</p>
+            <p>© 2026 El Barril Steak House · {{ t('footer_derechos') }}</p>
         </div>
     </footer>
 

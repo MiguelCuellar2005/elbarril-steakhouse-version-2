@@ -6,8 +6,8 @@
 
 <section style="padding-top: 7rem;">
     <div class="section-header">
-        <h2>Galería</h2>
-        <p>Momentos, sabores y fuego — así vivimos El Barril.</p>
+        <h2>{{ t('galeria_titulo') }}</h2>
+        <p>{{ t('galeria_sub') }}</p>
     </div>
 
     {% if fotos %}
@@ -22,7 +22,7 @@
             {% endfor %}
         </div>
     {% else %}
-        <p style="text-align:center; color: var(--gris); padding: 2rem;">Pronto vas a ver aquí fotos del food truck en acción.</p>
+        <p style="text-align:center; color: var(--gris); padding: 2rem;">{{ t('galeria_vacio') }}</p>
     {% endif %}
 </section>
 
