@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Promociones · Admin{% endblock %}
+
+{% block content %}
+
+<section class="dashboard">
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1><i class="fas fa-tag"></i> Promociones</h1>
+            <a href="{{ url_for('dashboard') }}" class="btn-logout">
+                <i class="fas fa-arrow-left"></i> Volver
+            </a>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+            <a href="{{ url_for('promocion_nueva') }}" class="btn-primary">
+                <i class="fas fa-plus"></i> Nueva Promoción
+            </a>
+        </div>
+
+        <div class="tabla-container">
+            <table class="admin-tabla">
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Vigencia</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for promo in promociones %}
+                    <tr>
+                        <td>{{ promo.titulo_es }}</td>
+                        <td>{{ promo.fecha_inicio }} al {{ promo.fecha_fin }}</td>
+                        <td>
+                            {% if promo.esta_activa() %}
+                                <span class="badge-verde">Activa</span>
+                            {% else %}
+                                <span class="badge-rojo">Inactiva</span>
+                            {% endif %}
+                        </td>
+                        <td class="acciones">
+                            <a href="{{ url_for('promocion_editar', id=promo.id) }}" class="btn-editar"><i class="fas fa-pen"></i></a>
+                            <a href="{{ url_for('promocion_eliminar', id=promo.id) }}" class="btn-eliminar" onclick="return confirm('¿Eliminar esta promoción?')"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% if not promociones %}
+            <p style="text-align:center; color: var(--gris); padding: 2rem;">Aún no hay promociones creadas.</p>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

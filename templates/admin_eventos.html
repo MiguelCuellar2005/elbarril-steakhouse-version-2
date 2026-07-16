@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Eventos · Admin{% endblock %}
+
+{% block content %}
+
+<section class="dashboard">
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1><i class="fas fa-calendar"></i> Eventos</h1>
+            <a href="{{ url_for('dashboard') }}" class="btn-logout">
+                <i class="fas fa-arrow-left"></i> Volver
+            </a>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+            <a href="{{ url_for('evento_nuevo') }}" class="btn-primary">
+                <i class="fas fa-plus"></i> Nuevo Evento
+            </a>
+        </div>
+
+        <div class="tabla-container">
+            <table class="admin-tabla">
+                <thead>
+                    <tr>
+                        <th>Evento</th>
+                        <th>Ubicación</th>
+                        <th>Fecha</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for evento in eventos %}
+                    <tr>
+                        <td>{{ evento.nombre_evento }}</td>
+                        <td>{{ evento.ubicacion }}</td>
+                        <td>
+                            {{ evento.fecha }}
+                            {% if evento.hora_inicio %} · {{ evento.hora_inicio }}{% endif %}
+                        </td>
+                        <td class="acciones">
+                            <a href="{{ url_for('evento_editar', id=evento.id) }}" class="btn-editar"><i class="fas fa-pen"></i></a>
+                            <a href="{{ url_for('evento_eliminar', id=evento.id) }}" class="btn-eliminar" onclick="return confirm('¿Eliminar este evento?')"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% if not eventos %}
+            <p style="text-align:center; color: var(--gris); padding: 2rem;">Aún no hay eventos programados.</p>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

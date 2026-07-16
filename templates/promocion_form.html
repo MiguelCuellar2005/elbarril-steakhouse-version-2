@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if promocion %}Editar{% else %}Agregar{% endif %} Promoción · Admin{% endblock %}
+
+{% block content %}
+
+<section class="dashboard">
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1><i class="fas fa-tag"></i> {% if promocion %}Editar{% else %}Agregar{% endif %} Promoción</h1>
+            <a href="{{ url_for('admin_promociones') }}" class="btn-logout">
+                <i class="fas fa-arrow-left"></i> Volver
+            </a>
+        </div>
+
+        <div class="admin-form">
+            <form method="POST">
+                <h2>Título</h2>
+                <div class="form-group">
+                    <label>Español</label>
+                    <input type="text" name="titulo_es" required value="{{ promocion.titulo_es if promocion else '' }}">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>English</label>
+                        <input type="text" name="titulo_en" value="{{ promocion.titulo_en if promocion else '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Français</label>
+                        <input type="text" name="titulo_fr" value="{{ promocion.titulo_fr if promocion else '' }}">
+                    </div>
+                </div>
+
+                <h2 style="margin-top: 1.5rem;">Descripción</h2>
+                <div class="form-group">
+                    <label>Español</label>
+                    <textarea name="descripcion_es" rows="2">{{ promocion.descripcion_es if promocion else '' }}</textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>English</label>
+                        <textarea name="descripcion_en" rows="2">{{ promocion.descripcion_en if promocion else '' }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Français</label>
+                        <textarea name="descripcion_fr" rows="2">{{ promocion.descripcion_fr if promocion else '' }}</textarea>
+                    </div>
+                </div>
+
+                <h2 style="margin-top: 1.5rem;">Vigencia</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Desde</label>
+                        <input type="date" name="fecha_inicio" required value="{{ promocion.fecha_inicio if promocion else '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Hasta</label>
+                        <input type="date" name="fecha_fin" required value="{{ promocion.fecha_fin if promocion else '' }}">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width:100%; justify-content:center; margin-top: 1.5rem;">
+                    <i class="fas fa-save"></i> Guardar
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard · El Barril Admin{% endblock %}
+
+{% block content %}
+
+<section class="dashboard">
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1><i class="fas fa-gauge"></i> Panel de Control</h1>
+            <a href="{{ url_for('logout') }}" class="btn-logout">
+                <i class="fas fa-right-from-bracket"></i> Cerrar Sesión
+            </a>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="numero">{{ total_platos }}</div>
+                <div class="label">Platos</div>
+            </div>
+            <div class="stat-card">
+                <div class="numero">{{ promos_activas }}</div>
+                <div class="label">Promos Activas</div>
+            </div>
+            <div class="stat-card">
+                <div class="numero">{{ proximos_eventos }}</div>
+                <div class="label">Próximos Eventos</div>
+            </div>
+            <div class="stat-card {% if catering_pendiente > 0 %}urgente{% endif %}">
+                <div class="numero">{{ catering_pendiente }}</div>
+                <div class="label">Catering Pendiente</div>
+            </div>
+        </div>
+
+        <div class="accesos-grid">
+            <a href="{{ url_for('admin_platos') }}" class="acceso-card">
+                <i class="fas fa-utensils"></i>
+                <span>Gestionar Menú</span>
+            </a>
+            <a href="{{ url_for('admin_promociones') }}" class="acceso-card">
+                <i class="fas fa-tag"></i>
+                <span>Promociones</span>
+            </a>
+            <a href="{{ url_for('admin_eventos') }}" class="acceso-card">
+                <i class="fas fa-calendar"></i>
+                <span>Eventos</span>
+            </a>
+            <a href="{{ url_for('admin_catering') }}" class="acceso-card">
+                <i class="fas fa-bell-concierge"></i>
+                <span>Catering</span>
+            </a>
+            <a href="{{ url_for('admin_historia') }}" class="acceso-card">
+                <i class="fas fa-book-open"></i>
+                <span>Editar Historia</span>
+            </a>
+            <a href="{{ url_for('admin_galeria') }}" class="acceso-card">
+                <i class="fas fa-images"></i>
+                <span>Galería de Fotos</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

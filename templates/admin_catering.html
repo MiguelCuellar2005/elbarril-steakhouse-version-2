@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Solicitudes de Catering · Admin{% endblock %}
+
+{% block content %}
+
+<section class="dashboard">
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1><i class="fas fa-bell-concierge"></i> Solicitudes de Catering</h1>
+            <a href="{{ url_for('dashboard') }}" class="btn-logout">
+                <i class="fas fa-arrow-left"></i> Volver
+            </a>
+        </div>
+
+        <div class="tabla-container">
+            <table class="admin-tabla">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Teléfono</th>
+                        <th>Evento</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for s in solicitudes %}
+                    <tr>
+                        <td>{{ s.nombre }}</td>
+                        <td>{{ s.telefono }}</td>
+                        <td>{{ s.tipo_evento or '-' }} {% if s.num_personas %}({{ s.num_personas }} pers.){% endif %}</td>
+                        <td>{{ s.fecha_evento or '-' }}</td>
+                        <td>
+                            {% if s.atendida %}
+                                <span class="badge-verde">Atendida</span>
+                            {% else %}
+                                <span class="badge-rojo">Pendiente</span>
+                            {% endif %}
+                        </td>
+                        <td class="acciones">
+                            <a href="{{ url_for('catering_toggle', id=s.id) }}" class="btn-editar">
+                                {% if s.atendida %}Marcar pendiente{% else %}Marcar atendida{% endif %}
+                            </a>
+                        </td>
+                    </tr>
+                    {% if s.mensaje %}
+                    <tr>
+                        <td colspan="6" style="font-style: italic; color: var(--gris); background: var(--gris-light);">"{{ s.mensaje }}"</td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% if not solicitudes %}
+            <p style="text-align:center; color: var(--gris); padding: 2rem;">Aún no hay solicitudes de catering.</p>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

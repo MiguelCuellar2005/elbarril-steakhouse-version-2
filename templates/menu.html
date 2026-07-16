@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}Menú · El Barril Steak House{% endblock %}
+
+{% block content %}
+
+<section class="categorias-home" style="padding-top: 7rem;">
+    <div class="section-header">
+        <h2>Nuestro Menú</h2>
+        <p>El auténtico sabor del fuego artesanal, servido con alma.</p>
+    </div>
+
+    <!-- Selector Food Truck / Resto -->
+    <div class="menu-selector">
+        <button class="menu-selector-btn active" data-tipo="foodtruck">
+            <i class="fas fa-truck"></i> Food Truck
+        </button>
+        <button class="menu-selector-btn" data-tipo="resto">
+            <i class="fas fa-utensils"></i> Resto
+        </button>
+    </div>
+
+    <!-- MENÚ FOOD TRUCK -->
+    <div class="menu-bloque active" id="menu-foodtruck">
+        {% for categoria in categorias_foodtruck %}
+            <h3 class="categoria-titulo">{{ categoria.nombre(idioma) }}</h3>
+            <div class="platos-grid">
+                {% for plato in categoria.platos %}
+                    {% if plato.disponible %}
+                    <div class="plato-card">
+                        <div class="plato-imagen">
+                            {% if plato.imagen %}
+                                <img src="{{ url_for('static', filename='uploads/' + plato.imagen) }}" alt="{{ plato.nombre(idioma) }}">
+                            {% else %}
+                                <div class="sin-foto"><i class="fas fa-utensils"></i></div>
+                            {% endif %}
+                        </div>
+                        <div class="plato-info">
+                            <h3>{{ plato.nombre(idioma) }}</h3>
+                            <p>{{ plato.descripcion(idioma) }}</p>
+                            <div class="plato-footer">
+                                <span class="precio">${{ plato.precio }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+        {% if not categorias_foodtruck %}
+            <p style="text-align:center; color: var(--gris); padding: 2rem 0;">Aún no hay platos cargados para el Food Truck.</p>
+        {% endif %}
+    </div>
+
+    <!-- MENÚ RESTO -->
+    <div class="menu-bloque" id="menu-resto">
+        {% for categoria in categorias_resto %}
+            <h3 class="categoria-titulo">{{ categoria.nombre(idioma) }}</h3>
+            <div class="platos-grid">
+                {% for plato in categoria.platos %}
+                    {% if plato.disponible %}
+                    <div class="plato-card">
+                        <div class="plato-imagen">
+                            {% if plato.imagen %}
+                                <img src="{{ url_for('static', filename='uploads/' + plato.imagen) }}" alt="{{ plato.nombre(idioma) }}">
+                            {% else %}
+                                <div class="sin-foto"><i class="fas fa-utensils"></i></div>
+                            {% endif %}
+                        </div>
+                        <div class="plato-info">
+                            <h3>{{ plato.nombre(idioma) }}</h3>
+                            <p>{{ plato.descripcion(idioma) }}</p>
+                            <div class="plato-footer">
+                                <span class="precio">${{ plato.precio }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+        {% if not categorias_resto %}
+            <p style="text-align:center; color: var(--gris); padding: 2rem 0;">Aún no hay platos cargados para el Resto.</p>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

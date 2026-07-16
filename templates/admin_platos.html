@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Gestionar Menú · Admin{% endblock %}
+
+{% block content %}
+
+<section class="dashboard">
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1><i class="fas fa-utensils"></i> Gestionar Menú</h1>
+            <a href="{{ url_for('dashboard') }}" class="btn-logout">
+                <i class="fas fa-arrow-left"></i> Volver
+            </a>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+            <a href="{{ url_for('plato_nuevo') }}" class="btn-primary">
+                <i class="fas fa-plus"></i> Agregar Plato
+            </a>
+        </div>
+
+        {% for categoria in categorias %}
+        <div class="admin-form">
+            <h2>{% if categoria.tipo == 'foodtruck' %}🚚{% else %}🍽️{% endif %} {{ categoria.nombre_es }} ({{ categoria.platos|length }})</h2>
+            <div class="tabla-container">
+                <table class="admin-tabla">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for plato in categoria.platos %}
+                        <tr>
+                            <td>{{ plato.nombre_es }}</td>
+                            <td>${{ plato.precio }}</td>
+                            <td>
+                                <a href="{{ url_for('plato_toggle', id=plato.id) }}">
+                                    {% if plato.disponible %}
+                                        <span class="badge-verde">Disponible</span>
+                                    {% else %}
+                                        <span class="badge-rojo">Agotado</span>
+                                    {% endif %}
+                                </a>
+                            </td>
+                            <td class="acciones">
+                                <a href="{{ url_for('plato_editar', id=plato.id) }}" class="btn-editar"><i class="fas fa-pen"></i></a>
+                                <a href="{{ url_for('plato_eliminar', id=plato.id) }}" class="btn-eliminar" onclick="return confirm('¿Eliminar este plato?')"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endfor %}
+
+        {% if not categorias %}
+            <p style="text-align:center; color: var(--gris); padding: 2rem;">Aún no tienes categorías creadas.</p>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="{{ idioma }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}El Barril Steak House{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('index') }}" class="nav-logo">
+                <img src="{{ url_for('static', filename='uploads/logo.jpeg') }}" alt="El Barril Steak House" height="60">
+            </a>
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="{{ url_for('index') }}" class="nav-link">Inicio</a></li>
+                <li><a href="{{ url_for('menu') }}" class="nav-link">Menú</a></li>
+                <li><a href="{{ url_for('galeria') }}" class="nav-link">Galería</a></li>
+                <li><a href="{{ url_for('index') }}#nosotros" class="nav-link">Nosotros</a></li>
+                <li><a href="{{ url_for('contacto') }}" class="nav-link">Contacto</a></li>
+                <li>
+                    <a href="https://wa.me/14189066654" target="_blank" class="nav-btn">
+                        <i class="fab fa-whatsapp"></i> Pedir Ya
+                    </a>
+                </li>
+                <li>
+                    <div class="nav-lang">
+                        <a href="{{ url_for('cambiar_idioma', lang='es') }}" class="{% if idioma == 'es' %}active{% endif %}">ES</a>
+                        <a href="{{ url_for('cambiar_idioma', lang='fr') }}" class="{% if idioma == 'fr' %}active{% endif %}">FR</a>
+                        <a href="{{ url_for('cambiar_idioma', lang='en') }}" class="{% if idioma == 'en' %}active{% endif %}">EN</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- MENSAJES FLASH -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for message in messages %}
+                    <div class="flash">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- CONTENIDO -->
+    {% block content %}{% endblock %}
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="{{ url_for('static', filename='uploads/logo.jpeg') }}" alt="El Barril Steak House" height="80">
+                <p class="footer-slogan">Sabor a Leña</p>
+            </div>
+            <div class="footer-info">
+                <h3>Encuéntranos</h3>
+                <p><i class="fas fa-map-marker-alt"></i> QG: 990 Rte de l'Église, Québec, QC</p>
+                <p><i class="fas fa-phone"></i> 418-906-6654</p>
+            </div>
+            <div class="footer-social">
+                <h3>Síguenos</h3>
+                <a href="https://instagram.com/elbarrilsteakhouse" target="_blank">
+                    <i class="fab fa-instagram"></i> @elbarrilsteakhouse
+                </a>
+                <a href="https://facebook.com/elbarrilsteakhouse" target="_blank">
+                    <i class="fab fa-facebook"></i> elbarrilsteakhouse
+                </a>
+                <a href="https://wa.me/14189066654" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Escríbenos
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 El Barril Steak House · Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

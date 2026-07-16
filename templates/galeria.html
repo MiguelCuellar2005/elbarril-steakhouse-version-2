@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Galería · El Barril Steak House{% endblock %}
+
+{% block content %}
+
+<section style="padding-top: 7rem;">
+    <div class="section-header">
+        <h2>Galería</h2>
+        <p>Momentos, sabores y fuego — así vivimos El Barril.</p>
+    </div>
+
+    {% if fotos %}
+        <div class="galeria-grid">
+            {% for foto in fotos %}
+                <div class="galeria-item">
+                    <img src="{{ url_for('static', filename='uploads/' + foto.imagen) }}" alt="{{ foto.descripcion or 'El Barril Steak House' }}">
+                    {% if foto.descripcion %}
+                        <div class="desc">{{ foto.descripcion }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p style="text-align:center; color: var(--gris); padding: 2rem;">Pronto vas a ver aquí fotos del food truck en acción.</p>
+    {% endif %}
+</section>
+
+{% endblock %}

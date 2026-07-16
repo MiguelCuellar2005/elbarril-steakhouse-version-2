@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Contacto · El Barril Steak House{% endblock %}
+
+{% block content %}
+
+<section class="contacto" style="padding-top: 7rem;">
+    <div class="section-header">
+        <h2>Contáctanos</h2>
+        <p>Parrilla caliente y sazón latino esperándote</p>
+    </div>
+
+    <div style="text-align:center; margin-bottom: 3rem;">
+        <a href="https://wa.me/14189066654" target="_blank" class="btn-whatsapp">
+            <i class="fab fa-whatsapp"></i> Escríbenos por WhatsApp
+        </a>
+    </div>
+
+    <div class="contacto-grid">
+        <div class="contacto-info">
+            <div class="info-card">
+                <i class="fas fa-phone"></i>
+                <h3>Llámanos</h3>
+                <p><a href="tel:+14189066654">418-906-6654</a></p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-comment-sms"></i>
+                <h3>Mensaje de texto</h3>
+                <p><a href="sms:+14189066654">418-906-6654</a></p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-location-dot"></i>
+                <h3>Nuestro cuartel general</h3>
+                <p>990 Rte de l'Église, Québec, QC</p>
+            </div>
+        </div>
+
+        <div class="admin-form">
+            <h2>Catering para tus eventos</h2>
+            <form method="POST" action="{{ url_for('contacto') }}">
+                <div class="form-group">
+                    <label>Nombre completo</label>
+                    <input type="text" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label>Teléfono</label>
+                    <input type="tel" name="telefono" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Fecha del evento</label>
+                        <input type="date" name="fecha_evento">
+                    </div>
+                    <div class="form-group">
+                        <label>Número de personas</label>
+                        <input type="number" name="num_personas" placeholder="Ej. 20">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Tipo de evento</label>
+                    <select name="tipo_evento">
+                        <option value="">Selecciona...</option>
+                        <option>Boda</option>
+                        <option>Cumpleaños</option>
+                        <option>Evento Corporativo</option>
+                        <option>Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Mensaje</label>
+                    <textarea name="mensaje" rows="4" placeholder="Cuéntanos más detalles..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">Enviar Solicitud</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %}El Barril Steak House · Sabor a Leña{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1 class="hero-title">EL BARRIL<br><span>STEAK HOUSE</span></h1>
+        <p class="hero-sub">Sabor a leña · Food Truck & Steak House · Quebec</p>
+        <div class="hero-btns">
+            <a href="{{ url_for('menu') }}" class="btn-primary">Ver Menú</a>
+            <a href="#donde-estamos" class="btn-secundario">Dónde estamos hoy</a>
+        </div>
+    </div>
+</section>
+
+<!-- TARJETAS RÁPIDAS -->
+<section class="categorias-home" id="donde-estamos">
+    <div class="section-header">
+        <h2>El Barril</h2>
+        <p>Todo lo que necesitas saber, de un vistazo</p>
+    </div>
+    <div class="categorias-grid">
+        <a href="{{ url_for('menu') }}" class="categoria-card">
+            <div class="categoria-placeholder"></div>
+            <div class="categoria-overlay">
+                <h3><i class="fas fa-utensils"></i> Menú</h3>
+                <span>Cortes premium a la leña</span>
+            </div>
+        </a>
+        <div class="categoria-card">
+            <div class="categoria-placeholder"></div>
+            <div class="categoria-overlay">
+                <h3><i class="fas fa-location-dot"></i> Dónde estamos</h3>
+                {% if eventos %}
+                    <span>{{ eventos[0].nombre_evento }} — {{ eventos[0].ubicacion }} ({{ eventos[0].fecha }})</span>
+                {% else %}
+                    <span>Consulta nuestras redes para la ubicación de hoy</span>
+                {% endif %}
+            </div>
+        </div>
+        <div class="categoria-card">
+            <div class="categoria-placeholder"></div>
+            <div class="categoria-overlay">
+                <h3><i class="fas fa-tag"></i> Promociones</h3>
+                {% if promociones %}
+                    <span>{{ promociones[0].titulo(idioma) }}</span>
+                {% else %}
+                    <span>Sin promociones activas por ahora</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- NOSOTROS / HISTORIA -->
+<section class="nosotros" id="nosotros">
+    <div class="nosotros-container">
+        <div class="nosotros-texto">
+            <h2>De dónde venimos</h2>
+            <p>
+                {% if historia and historia.texto(idioma) %}
+                    {{ historia.texto(idioma) }}
+                {% else %}
+                    Nuestra pasión nació entre el humo de las brasas y la tradición familiar de domar el fuego. No solo cocinamos carne; honramos el ritual del barril.
+                {% endif %}
+            </p>
+        </div>
+        <div class="nosotros-imagen">
+            {% if fotos_historia %}
+                <div class="nosotros-fotos">
+                    {% for foto in fotos_historia %}
+                        <img src="{{ url_for('static', filename='uploads/' + foto.imagen) }}" alt="{{ foto.descripcion or '' }}">
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="categoria-placeholder" style="border-radius: 12px; aspect-ratio: 4/3;"></div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- CATERING -->
+<section class="contacto">
+    <div class="section-header">
+        <h2>Llevamos el Barril a tu evento</h2>
+        <p>Desde reuniones familiares hasta eventos corporativos</p>
+    </div>
+    <div style="text-align: center;">
+        <a href="{{ url_for('contacto') }}" class="btn-primary">Contactar para Catering</a>
+    </div>
+</section>
+
+{% endblock %}

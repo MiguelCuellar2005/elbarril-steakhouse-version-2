@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Historia · Admin{% endblock %}
+
+{% block content %}
+
+<section class="dashboard">
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1><i class="fas fa-book-open"></i> Nuestra Historia</h1>
+            <a href="{{ url_for('dashboard') }}" class="btn-logout">
+                <i class="fas fa-arrow-left"></i> Volver
+            </a>
+        </div>
+
+        <div class="admin-form">
+            <form method="POST">
+                <h2>Texto de la Historia</h2>
+                <div class="form-group">
+                    <label>Español</label>
+                    <textarea name="texto_es" rows="4">{{ historia.texto_es or '' }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label>English</label>
+                    <textarea name="texto_en" rows="4">{{ historia.texto_en or '' }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label>Français</label>
+                    <textarea name="texto_fr" rows="4">{{ historia.texto_fr or '' }}</textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">
+                    <i class="fas fa-save"></i> Guardar Texto
+                </button>
+            </form>
+        </div>
+
+        <div class="admin-form">
+            <h2>Fotos de la Historia</h2>
+            <div class="galeria-admin-grid">
+                {% for foto in fotos %}
+                <div class="galeria-admin-item">
+                    <img src="{{ url_for('static', filename='uploads/' + foto.imagen) }}">
+                    <a href="{{ url_for('historia_foto_eliminar', id=foto.id) }}" class="btn-eliminar-foto" onclick="return confirm('¿Eliminar esta foto?')">
+                        <i class="fas fa-times"></i>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+
+            <form method="POST" action="{{ url_for('historia_foto_subir') }}" enctype="multipart/form-data" style="margin-top: 1.5rem;">
+                <div class="form-group">
+                    <input type="file" name="imagen" accept="image/*" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="descripcion" placeholder="Descripción (opcional)">
+                </div>
+                <button type="submit" class="btn-primary">
+                    <i class="fas fa-plus"></i> Agregar Foto
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

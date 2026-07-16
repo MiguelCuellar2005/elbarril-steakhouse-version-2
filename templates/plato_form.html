@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if plato %}Editar{% else %}Agregar{% endif %} Plato · Admin{% endblock %}
+
+{% block content %}
+
+<section class="dashboard">
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1><i class="fas fa-utensils"></i> {% if plato %}Editar{% else %}Agregar{% endif %} Plato</h1>
+            <a href="{{ url_for('admin_platos') }}" class="btn-logout">
+                <i class="fas fa-arrow-left"></i> Volver
+            </a>
+        </div>
+
+        <div class="admin-form">
+            <form method="POST" enctype="multipart/form-data">
+                <h2>Nombre del plato</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Español</label>
+                        <input type="text" name="nombre_es" required value="{{ plato.nombre_es if plato else '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label>English</label>
+                        <input type="text" name="nombre_en" value="{{ plato.nombre_en if plato else '' }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Français</label>
+                    <input type="text" name="nombre_fr" value="{{ plato.nombre_fr if plato else '' }}">
+                </div>
+
+                <h2 style="margin-top: 1.5rem;">Descripción</h2>
+                <div class="form-group">
+                    <label>Español</label>
+                    <textarea name="descripcion_es" rows="2">{{ plato.descripcion_es if plato else '' }}</textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>English</label>
+                        <textarea name="descripcion_en" rows="2">{{ plato.descripcion_en if plato else '' }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Français</label>
+                        <textarea name="descripcion_fr" rows="2">{{ plato.descripcion_fr if plato else '' }}</textarea>
+                    </div>
+                </div>
+
+                <h2 style="margin-top: 1.5rem;">Foto</h2>
+                {% if plato and plato.imagen %}
+                    <img src="{{ url_for('static', filename='uploads/' + plato.imagen) }}" class="foto-preview">
+                    <p style="font-size: 0.85rem; color: var(--gris); margin-bottom: 0.8rem;">Selecciona una nueva foto solo si quieres reemplazarla</p>
+                {% endif %}
+                <div class="form-group">
+                    <input type="file" name="imagen" accept="image/*">
+                </div>
+
+                <div class="form-row" style="margin-top: 1.5rem;">
+                    <div class="form-group">
+                        <label>Precio ($)</label>
+                        <input type="number" name="precio" step="0.01" required value="{{ plato.precio if plato else '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Categoría</label>
+                        <select name="categoria_id" required>
+                            {% for categoria in categorias %}
+                                <option value="{{ categoria.id }}" {% if plato and plato.categoria_id == categoria.id %}selected{% endif %}>
+                                    {% if categoria.tipo == 'foodtruck' %}🚚{% else %}🍽️{% endif %} {{ categoria.nombre_es }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group checkbox-group" style="margin-top: 1rem;">
+                    <input type="checkbox" name="disponible" id="disponible" {% if not plato or plato.disponible %}checked{% endif %}>
+                    <label for="disponible">Disponible para la venta</label>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width:100%; justify-content:center; margin-top: 1.5rem;">
+                    <i class="fas fa-save"></i> Guardar
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
