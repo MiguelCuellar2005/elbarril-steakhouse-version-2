@@ -28,7 +28,7 @@
                     <div class="plato-card">
                         <div class="plato-imagen">
                             {% if plato.imagen %}
-                                <img src="{{ url_for('static', filename='uploads/' + plato.imagen) }}" alt="{{ plato.nombre(idioma) }}">
+                                <img src="{{ plato.imagen }}" alt="{{ plato.nombre(idioma) }}">
                             {% else %}
                                 <div class="sin-foto"><i class="fas fa-utensils"></i></div>
                             {% endif %}
@@ -60,7 +60,7 @@
                     <div class="plato-card">
                         <div class="plato-imagen">
                             {% if plato.imagen %}
-                                <img src="{{ url_for('static', filename='uploads/' + plato.imagen) }}" alt="{{ plato.nombre(idioma) }}">
+                                <img src="{{ plato.imagen }}" alt="{{ plato.nombre(idioma) }}">
                             {% else %}
                                 <div class="sin-foto"><i class="fas fa-utensils"></i></div>
                             {% endif %}
@@ -83,5 +83,14 @@
         {% endif %}
     </div>
 </section>
+
+<script>
+        function mostrarMenu(tipo) {
+            const foodtruck = document.getElementById('menu-foodtruck');
+            const resto = document.getElementById('menu-resto');
+            const btnFoodtruck = document.querySelector('[data-tipo="foodtruck"]');
+            const btnResto = document.querySelector('[data-tipo="resto"]');
+        }
+</script>
 
 {% endblock %}

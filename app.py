@@ -7,7 +7,8 @@ from datetime import datetime, date
 import os
 import uuid
 from dotenv import load_dotenv
-from traducciones import traducir
+import cloudinary
+import cloudinary.uploader
 
 load_dotenv()
 
@@ -22,6 +23,12 @@ elif DATABASE_URL.startswith('postgresql://'):
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+
+cloudinary.config(
+    cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    api_key=os.environ.get('CLOUDINARY_API_KEY'),
+    api_secret=os.environ.get('CLOUDINARY_API_SECRET')
+)
 
 _requeridas = ['SECRET_KEY', 'ADMIN_USERNAME', 'ADMIN_PASSWORD']
 _faltantes = [v for v in _requeridas if not os.environ.get(v)]
@@ -64,7 +71,7 @@ class Plato(db.Model):
     descripcion_en = db.Column(db.String(300))
     descripcion_fr = db.Column(db.String(300))
     precio = db.Column(db.Numeric(6, 2), nullable=False)
-    imagen = db.Column(db.String(200))
+    imagen = db.Column(db.String(500))
     disponible = db.Column(db.Boolean, default=True)
 
     def nombre(self, idioma='es'):
@@ -131,7 +138,7 @@ class Historia(db.Model):
 class FotoGaleria(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     seccion = db.Column(db.String(20), nullable=False, default='galeria')
-    imagen = db.Column(db.String(255), nullable=False)
+    imagen = db.Column(db.String(500), nullable=False)
     descripcion = db.Column(db.String(255))
     orden = db.Column(db.Integer, default=0)
 
@@ -216,6 +223,8 @@ def cambiar_idioma(lang):
     return redirect(request.referrer or url_for('index'))
 
 
+from traducciones import traducir
+
 @app.context_processor
 def inject_idioma():
     idioma_actual = session.get('idioma', 'es')
@@ -271,7 +280,7 @@ def dashboard():
     )
 
 
-# ── Utilidad para subir imágenes ──────────────────────────────────────────────
+# ── Utilidad para subir imágenes (a Cloudinary) ───────────────────────────────
 
 EXTENSIONES_PERMITIDAS = {'png', 'jpg', 'jpeg', 'webp'}
 
@@ -282,11 +291,8 @@ def extension_permitida(nombre_archivo):
 
 def guardar_imagen(archivo):
     if archivo and archivo.filename and extension_permitida(archivo.filename):
-        extension = archivo.filename.rsplit('.', 1)[1].lower()
-        nombre_unico = f"{uuid.uuid4().hex}.{extension}"
-        ruta_completa = os.path.join(app.config['UPLOAD_FOLDER'], nombre_unico)
-        archivo.save(ruta_completa)
-        return nombre_unico
+        resultado = cloudinary.uploader.upload(archivo, folder="elbarril")
+        return resultado.get('secure_url')
     return None
 
 

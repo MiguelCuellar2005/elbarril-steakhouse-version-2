@@ -31,6 +31,15 @@
                     <input type="text" name="nombre_fr" value="{{ plato.nombre_fr if plato else '' }}">
                 </div>
 
+                <h2 style="margin-top: 1.5rem;">Foto del plato</h2>
+                {% if plato and plato.imagen %}
+                    <img src="{{ plato.imagen }}" class="foto-preview" alt="Foto actual">
+                    <p style="font-size: 0.85rem; color: var(--gris); margin-bottom: 0.8rem;">Selecciona una nueva foto solo si quieres reemplazarla</p>
+                {% endif %}
+                <div class="form-group">
+                    <input type="file" name="imagen" accept="image/*">
+                </div>
+
                 <h2 style="margin-top: 1.5rem;">Descripción</h2>
                 <div class="form-group">
                     <label>Español</label>
@@ -45,15 +54,6 @@
                         <label>Français</label>
                         <textarea name="descripcion_fr" rows="2">{{ plato.descripcion_fr if plato else '' }}</textarea>
                     </div>
-                </div>
-
-                <h2 style="margin-top: 1.5rem;">Foto</h2>
-                {% if plato and plato.imagen %}
-                    <img src="{{ url_for('static', filename='uploads/' + plato.imagen) }}" class="foto-preview">
-                    <p style="font-size: 0.85rem; color: var(--gris); margin-bottom: 0.8rem;">Selecciona una nueva foto solo si quieres reemplazarla</p>
-                {% endif %}
-                <div class="form-group">
-                    <input type="file" name="imagen" accept="image/*">
                 </div>
 
                 <div class="form-row" style="margin-top: 1.5rem;">

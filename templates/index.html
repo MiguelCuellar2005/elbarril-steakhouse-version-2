@@ -70,7 +70,7 @@
             {% if fotos_historia %}
                 <div class="nosotros-fotos">
                     {% for foto in fotos_historia %}
-                        <img src="{{ url_for('static', filename='uploads/' + foto.imagen) }}" alt="{{ foto.descripcion or '' }}">
+                        <img src="{{ foto.imagen }}" alt="{{ foto.descripcion or '' }}">
                     {% endfor %}
                 </div>
             {% else %}

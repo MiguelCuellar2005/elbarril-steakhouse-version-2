@@ -14,7 +14,7 @@
         <div class="galeria-grid">
             {% for foto in fotos %}
                 <div class="galeria-item">
-                    <img src="{{ url_for('static', filename='uploads/' + foto.imagen) }}" alt="{{ foto.descripcion or 'El Barril Steak House' }}">
+                    <img src="{{ foto.imagen }}" alt="{{ foto.descripcion or 'El Barril Steak House' }}">
                     {% if foto.descripcion %}
                         <div class="desc">{{ foto.descripcion }}</div>
                     {% endif %}

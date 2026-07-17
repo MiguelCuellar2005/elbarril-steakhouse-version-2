@@ -39,7 +39,7 @@
             <div class="galeria-admin-grid">
                 {% for foto in fotos %}
                 <div class="galeria-admin-item">
-                    <img src="{{ url_for('static', filename='uploads/' + foto.imagen) }}">
+                    <img src="{{ foto.imagen }}">
                     <a href="{{ url_for('historia_foto_eliminar', id=foto.id) }}" class="btn-eliminar-foto" onclick="return confirm('¿Eliminar esta foto?')">
                         <i class="fas fa-times"></i>
                     </a>
