@@ -551,6 +551,9 @@ ul   { list-style: none; }
     }
     .nav-menu.active { display: flex; }
     .nav-toggle { display: block; }
+    .nav-container { flex-wrap: nowrap; }
+    .nav-logo img { height: 40px; width: auto; }
+    .nav-toggle { margin-left: auto; }
     .nosotros-container { grid-template-columns: 1fr; gap: 2rem; }
     .contacto-grid { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
