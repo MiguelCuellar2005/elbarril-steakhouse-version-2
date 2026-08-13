@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ t('trabaja_titulo') }} · El Barril Steak House{% endblock %}
+
+{% block content %}
+
+<section class="contacto" style="padding-top: 7rem;">
+    <div class="section-header">
+        <h2>{{ t('trabaja_titulo') }}</h2>
+        <p>{{ t('trabaja_sub') }}</p>
+    </div>
+
+    <div style="max-width: 600px; margin: 0 auto;">
+        <div class="admin-form">
+            <h2>{{ t('trabaja_form_titulo') }}</h2>
+            <form method="POST" action="{{ url_for('trabaja') }}" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>{{ t('form_nombre') }}</label>
+                    <input type="text" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label>{{ t('form_telefono') }}</label>
+                    <input type="tel" name="telefono" required>
+                </div>
+                <div class="form-group">
+                    <label>{{ t('trabaja_form_mensaje') }}</label>
+                    <textarea name="mensaje" rows="4" placeholder="{{ t('trabaja_form_mensaje') }}"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>{{ t('trabaja_form_cv') }}</label>
+                    <input type="file" name="cv" accept=".pdf,.doc,.docx" required>
+                    <p style="font-size: 0.85rem; color: var(--gris);">{{ t('trabaja_form_cv_ayuda') }}</p>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--gris); margin-bottom: 1rem;">
+                    {{ t('trabaja_privacidad_pre') }}
+                    <a href="{{ url_for('politica_privacidad') }}" style="color: var(--rojo); text-decoration: underline;" target="_blank">{{ t('trabaja_privacidad_link') }}</a>.
+                </p>
+                <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">{{ t('trabaja_form_enviar') }}</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

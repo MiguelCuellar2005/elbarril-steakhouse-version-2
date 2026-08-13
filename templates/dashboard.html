@@ -30,6 +30,10 @@
                 <div class="numero">{{ catering_pendiente }}</div>
                 <div class="label">Catering Pendiente</div>
             </div>
+            <div class="stat-card {% if postulaciones_pendientes > 0 %}urgente{% endif %}">
+                <div class="numero">{{ postulaciones_pendientes }}</div>
+                <div class="label">Postulaciones Pendientes</div>
+            </div>
         </div>
 
         <div class="accesos-grid">
@@ -48,6 +52,10 @@
             <a href="{{ url_for('admin_catering') }}" class="acceso-card">
                 <i class="fas fa-bell-concierge"></i>
                 <span>Catering</span>
+            </a>
+            <a href="{{ url_for('admin_postulaciones') }}" class="acceso-card">
+                <i class="fas fa-briefcase"></i>
+                <span>Postulaciones</span>
             </a>
             <a href="{{ url_for('admin_historia') }}" class="acceso-card">
                 <i class="fas fa-book-open"></i>

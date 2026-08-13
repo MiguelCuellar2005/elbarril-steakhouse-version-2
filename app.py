@@ -21,7 +21,6 @@ if DATABASE_URL.startswith('postgres://'):
 elif DATABASE_URL.startswith('postgresql://'):
     DATABASE_URL = DATABASE_URL.replace('postgresql://', 'postgresql+psycopg2://', 1)
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
-app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 cloudinary.config(
@@ -30,7 +29,7 @@ cloudinary.config(
     api_secret=os.environ.get('CLOUDINARY_API_SECRET')
 )
 
-_requeridas = ['SECRET_KEY', 'ADMIN_USERNAME', 'ADMIN_PASSWORD']
+_requeridas = ['SECRET_KEY', 'ADMIN_USERNAME', 'ADMIN_PASSWORD', 'CLOUDINARY_CLOUD_NAME', 'CLOUDINARY_API_KEY', 'CLOUDINARY_API_SECRET']
 _faltantes = [v for v in _requeridas if not os.environ.get(v)]
 if _faltantes:
     raise RuntimeError(f"Faltan variables de entorno en .env: {', '.join(_faltantes)}")
@@ -143,6 +142,16 @@ class FotoGaleria(db.Model):
     orden = db.Column(db.Integer, default=0)
 
 
+class Postulacion(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(150), nullable=False)
+    telefono = db.Column(db.String(30), nullable=False)
+    mensaje = db.Column(db.Text)
+    cv_url = db.Column(db.String(500))
+    fecha_creacion = db.Column(db.DateTime, default=datetime.utcnow)
+    revisada = db.Column(db.Boolean, default=False)
+
+
 @login_manager.user_loader
 def load_user(user_id):
     return Admin.query.get(int(user_id))
@@ -216,6 +225,30 @@ def contacto():
     return render_template('contacto.html')
 
 
+@app.route('/trabaja-con-nosotros', methods=['GET', 'POST'])
+def trabaja():
+    if request.method == 'POST':
+        cv_url = guardar_cv(request.files.get('cv'))
+
+        postulacion = Postulacion(
+            nombre=request.form.get('nombre'),
+            telefono=request.form.get('telefono'),
+            mensaje=request.form.get('mensaje'),
+            cv_url=cv_url
+        )
+        db.session.add(postulacion)
+        db.session.commit()
+        flash('¡Gracias! Tu postulación fue enviada, te contactaremos pronto.')
+        return redirect(url_for('trabaja'))
+
+    return render_template('trabaja.html')
+
+
+@app.route('/politica-privacidad')
+def politica_privacidad():
+    return render_template('politica_privacidad.html')
+
+
 @app.route('/idioma/<lang>')
 def cambiar_idioma(lang):
     if lang in ('fr', 'en', 'es'):
@@ -270,13 +303,15 @@ def dashboard():
     ).count()
     proximos_eventos = Evento.query.filter(Evento.fecha >= hoy).count()
     catering_pendiente = SolicitudCatering.query.filter_by(atendida=False).count()
+    postulaciones_pendientes = Postulacion.query.filter_by(revisada=False).count()
 
     return render_template(
         'dashboard.html',
         total_platos=total_platos,
         promos_activas=promos_activas,
         proximos_eventos=proximos_eventos,
-        catering_pendiente=catering_pendiente
+        catering_pendiente=catering_pendiente,
+        postulaciones_pendientes=postulaciones_pendientes
     )
 
 
@@ -292,6 +327,22 @@ def extension_permitida(nombre_archivo):
 def guardar_imagen(archivo):
     if archivo and archivo.filename and extension_permitida(archivo.filename):
         resultado = cloudinary.uploader.upload(archivo, folder="elbarril")
+        return resultado.get('secure_url')
+    return None
+
+
+# ── Utilidad para subir CVs (a Cloudinary, resource_type raw) ─────────────────
+
+EXTENSIONES_CV_PERMITIDAS = {'pdf', 'doc', 'docx'}
+
+
+def extension_cv_permitida(nombre_archivo):
+    return '.' in nombre_archivo and nombre_archivo.rsplit('.', 1)[1].lower() in EXTENSIONES_CV_PERMITIDAS
+
+
+def guardar_cv(archivo):
+    if archivo and archivo.filename and extension_cv_permitida(archivo.filename):
+        resultado = cloudinary.uploader.upload(archivo, folder="elbarril/cvs", resource_type="raw")
         return resultado.get('secure_url')
     return None
 
@@ -525,6 +576,34 @@ def catering_eliminar(id):
     db.session.commit()
     flash('Solicitud eliminada')
     return redirect(url_for('admin_catering'))
+
+
+# ── Postulaciones ─────────────────────────────────────────────────────────────
+
+@app.route('/admin/postulaciones')
+@login_required
+def admin_postulaciones():
+    postulaciones = Postulacion.query.order_by(Postulacion.fecha_creacion.desc()).all()
+    return render_template('admin_postulaciones.html', postulaciones=postulaciones)
+
+
+@app.route('/admin/postulaciones/toggle/<int:id>')
+@login_required
+def postulacion_toggle(id):
+    postulacion = Postulacion.query.get_or_404(id)
+    postulacion.revisada = not postulacion.revisada
+    db.session.commit()
+    return redirect(url_for('admin_postulaciones'))
+
+
+@app.route('/admin/postulaciones/eliminar/<int:id>')
+@login_required
+def postulacion_eliminar(id):
+    postulacion = Postulacion.query.get_or_404(id)
+    db.session.delete(postulacion)
+    db.session.commit()
+    flash('Postulación eliminada')
+    return redirect(url_for('admin_postulaciones'))
 
 
 # ── Historia ──────────────────────────────────────────────────────────────────

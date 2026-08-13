@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Postulaciones · Admin{% endblock %}
+
+{% block content %}
+
+<section class="dashboard">
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1><i class="fas fa-briefcase"></i> Postulaciones</h1>
+            <a href="{{ url_for('dashboard') }}" class="btn-logout">
+                <i class="fas fa-arrow-left"></i> Volver
+            </a>
+        </div>
+
+        <div class="tabla-container">
+            <table class="admin-tabla">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Teléfono</th>
+                        <th>Fecha</th>
+                        <th>CV</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in postulaciones %}
+                    <tr>
+                        <td>{{ p.nombre }}</td>
+                        <td>{{ p.telefono }}</td>
+                        <td>{{ p.fecha_creacion.strftime('%d/%m/%Y') }}</td>
+                        <td>
+                            {% if p.cv_url %}
+                                <a href="{{ p.cv_url }}" target="_blank" class="btn-editar">Ver CV</a>
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if p.revisada %}
+                                <span class="badge-verde">Revisada</span>
+                            {% else %}
+                                <span class="badge-rojo">Pendiente</span>
+                            {% endif %}
+                        </td>
+                        <td class="acciones">
+                            <a href="{{ url_for('postulacion_toggle', id=p.id) }}" class="btn-editar">
+                                {% if p.revisada %}Marcar pendiente{% else %}Marcar revisada{% endif %}
+                            </a>
+                            <a href="{{ url_for('postulacion_eliminar', id=p.id) }}" class="btn-eliminar" onclick="return confirm('¿Eliminar esta postulación?')">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% if p.mensaje %}
+                    <tr>
+                        <td colspan="6" style="font-style: italic; color: var(--gris); background: var(--gris-light);">"{{ p.mensaje }}"</td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% if not postulaciones %}
+            <p style="text-align:center; color: var(--gris); padding: 2rem;">Aún no hay postulaciones.</p>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

@@ -24,6 +24,7 @@
                 <li><a href="{{ url_for('galeria') }}" class="nav-link">{{ t('nav_galeria') }}</a></li>
                 <li><a href="{{ url_for('index') }}#nosotros" class="nav-link">{{ t('nav_nosotros') }}</a></li>
                 <li><a href="{{ url_for('contacto') }}" class="nav-link">{{ t('nav_contacto') }}</a></li>
+                <li><a href="{{ url_for('trabaja') }}" class="nav-link">{{ t('nav_trabaja') }}</a></li>
                 <li>
                     <a href="https://wa.me/14189066654" target="_blank" class="nav-btn">
                         <i class="fab fa-whatsapp"></i> {{ t('nav_pedir') }}
@@ -75,9 +76,16 @@
                     <i class="fab fa-whatsapp"></i> {{ t('footer_escribenos') }}
                 </a>
             </div>
+            <div class="footer-social">
+                <h3>{{ t('footer_enlaces_titulo') }}</h3>
+                <a href="{{ url_for('trabaja') }}">
+                    <i class="fas fa-briefcase"></i> {{ t('nav_trabaja') }}
+                </a>
+            </div>
         </div>
         <div class="footer-bottom">
             <p>© 2026 El Barril Steak House · {{ t('footer_derechos') }}</p>
+            <p><a href="{{ url_for('politica_privacidad') }}">{{ t('footer_privacidad') }}</a></p>
         </div>
     </footer>
 

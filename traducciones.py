@@ -5,6 +5,7 @@ TEXTOS = {
     "nav_galeria": {"es": "Galería", "fr": "Galerie", "en": "Gallery"},
     "nav_nosotros": {"es": "Nosotros", "fr": "À propos", "en": "About Us"},
     "nav_contacto": {"es": "Contacto", "fr": "Contact", "en": "Contact"},
+    "nav_trabaja": {"es": "Únete a Nuestro Equipo", "fr": "Rejoignez Notre Équipe", "en": "Join Our Team"},
     "nav_pedir": {"es": "Pedir Ya", "fr": "Commander", "en": "Order Now"},
 
     # Hero (Inicio)
@@ -69,12 +70,71 @@ TEXTOS = {
     "form_mensaje": {"es": "Cuéntanos más detalles...", "fr": "Donnez-nous plus de détails...", "en": "Tell us more details..."},
     "form_enviar": {"es": "Enviar Solicitud", "fr": "Envoyer la demande", "en": "Send Request"},
 
+    # Únete a nuestro equipo
+    "trabaja_titulo": {"es": "Únete a Nuestro Equipo", "fr": "Rejoignez Notre Équipe", "en": "Join Our Team"},
+    "trabaja_sub": {"es": "¿Te apasiona el fuego, la parrilla y el buen servicio? Queremos conocerte.", "fr": "Le feu, le grill et le bon service vous passionnent? Nous voulons vous connaître.", "en": "Passionate about fire, the grill, and great service? We want to meet you."},
+    "trabaja_form_titulo": {"es": "Postúlate aquí", "fr": "Postulez ici", "en": "Apply here"},
+    "trabaja_form_mensaje": {"es": "¿Por qué te gustaría unirte a nuestro equipo?", "fr": "Pourquoi aimeriez-vous rejoindre notre équipe?", "en": "Why would you like to join our team?"},
+    "trabaja_form_cv": {"es": "Tu currículum (CV)", "fr": "Votre CV", "en": "Your résumé (CV)"},
+    "trabaja_form_cv_ayuda": {"es": "Formatos aceptados: PDF, DOC, DOCX", "fr": "Formats acceptés : PDF, DOC, DOCX", "en": "Accepted formats: PDF, DOC, DOCX"},
+    "trabaja_form_enviar": {"es": "Enviar Postulación", "fr": "Envoyer la candidature", "en": "Submit Application"},
+    "trabaja_privacidad_pre": {"es": "Al enviar este formulario, aceptas nuestra", "fr": "En soumettant ce formulaire, vous acceptez notre", "en": "By submitting this form, you accept our"},
+    "trabaja_privacidad_link": {"es": "política de privacidad", "fr": "politique de confidentialité", "en": "privacy policy"},
+
+    # Política de Privacidad
+    "privacidad_titulo": {"es": "Política de Privacidad", "fr": "Politique de Confidentialité", "en": "Privacy Policy"},
+    "privacidad_sub": {"es": "Cómo protegemos tu información en El Barril Steak House", "fr": "Comment nous protégeons vos renseignements chez El Barril Steak House", "en": "How we protect your information at El Barril Steak House"},
+    "privacidad_intro": {
+        "es": "En El Barril Steak House respetamos tu privacidad y cumplimos con la Ley 25 de protección de datos personales de Quebec. Esta página explica, en lenguaje simple, qué información recolectamos y cómo la usamos.",
+        "fr": "Chez El Barril Steak House, nous respectons votre vie privée et nous nous conformons à la Loi 25 sur la protection des renseignements personnels du Québec. Cette page explique, en langage simple, quelles informations nous recueillons et comment nous les utilisons.",
+        "en": "At El Barril Steak House, we respect your privacy and comply with Quebec's Law 25 on the protection of personal information. This page explains, in plain language, what information we collect and how we use it."
+    },
+    "privacidad_datos_titulo": {"es": "Qué datos recolectamos", "fr": "Quelles données nous recueillons", "en": "What data we collect"},
+    "privacidad_datos_texto": {
+        "es": "Cuando nos escribes por el formulario de catering o te postulas para trabajar con nosotros, recolectamos: tu nombre, tu número de teléfono, el mensaje que nos envías y, si te postulas a un empleo, tu currículum (CV).",
+        "fr": "Lorsque vous nous écrivez via le formulaire de traiteur ou que vous postulez pour travailler avec nous, nous recueillons : votre nom, votre numéro de téléphone, le message que vous nous envoyez et, si vous postulez à un emploi, votre curriculum vitae (CV).",
+        "en": "When you write to us through the catering form or apply to work with us, we collect: your name, your phone number, the message you send us, and, if you're applying for a job, your résumé (CV)."
+    },
+    "privacidad_uso_titulo": {"es": "Para qué los usamos", "fr": "Comment nous les utilisons", "en": "How we use it"},
+    "privacidad_uso_texto": {
+        "es": "Usamos esta información únicamente para responder tu solicitud de catering o tu postulación de empleo, y para contactarte por teléfono, WhatsApp o mensaje de texto. No la usamos para ningún otro fin.",
+        "fr": "Nous utilisons ces informations uniquement pour répondre à votre demande de traiteur ou à votre candidature, et pour vous contacter par téléphone, WhatsApp ou message texte. Nous ne les utilisons à aucune autre fin.",
+        "en": "We use this information only to respond to your catering request or job application, and to contact you by phone, WhatsApp, or text message. We do not use it for any other purpose."
+    },
+    "privacidad_terceros_titulo": {"es": "No compartimos tus datos", "fr": "Nous ne partageons pas vos données", "en": "We don't share your data"},
+    "privacidad_terceros_texto": {
+        "es": "Nunca vendemos ni compartimos tu información con terceros. Tus datos se quedan con nosotros y solo los usa el equipo de El Barril Steak House.",
+        "fr": "Nous ne vendons ni ne partageons jamais vos renseignements avec des tiers. Vos données restent chez nous et seule l'équipe d'El Barril Steak House y a accès.",
+        "en": "We never sell or share your information with third parties. Your data stays with us and is only used by the El Barril Steak House team."
+    },
+    "privacidad_conservacion_titulo": {"es": "Cuánto tiempo los conservamos", "fr": "Combien de temps nous les conservons", "en": "How long we keep it"},
+    "privacidad_conservacion_texto": {
+        "es": "Guardamos tus datos solo el tiempo necesario para atender tu solicitud. Puedes pedirnos en cualquier momento que eliminemos tu información.",
+        "fr": "Nous conservons vos données seulement le temps nécessaire pour traiter votre demande. Vous pouvez nous demander en tout temps de supprimer vos informations.",
+        "en": "We keep your data only as long as necessary to handle your request. You can ask us at any time to delete your information."
+    },
+    "privacidad_derechos_titulo": {"es": "Tus derechos", "fr": "Vos droits", "en": "Your rights"},
+    "privacidad_derechos_texto": {
+        "es": "Tienes derecho a saber qué datos tenemos sobre ti, a corregirlos o a pedir que los eliminemos. Solo tienes que contactarnos.",
+        "fr": "Vous avez le droit de savoir quelles données nous détenons à votre sujet, de les corriger ou de demander leur suppression. Il vous suffit de nous contacter.",
+        "en": "You have the right to know what data we have about you, to correct it, or to ask us to delete it. Just contact us."
+    },
+    "privacidad_responsable_titulo": {"es": "Responsable de la protección de datos", "fr": "Responsable de la protection des données", "en": "Data protection officer"},
+    "privacidad_responsable_texto": {
+        "es": "El responsable de la protección de tus datos personales es el dueño de El Barril Steak House. Puedes contactarlo por teléfono al 418-906-6654 o por WhatsApp.",
+        "fr": "Le responsable de la protection de vos renseignements personnels est le propriétaire d'El Barril Steak House. Vous pouvez le contacter par téléphone au 418-906-6654 ou par WhatsApp.",
+        "en": "The person responsible for protecting your personal data is the owner of El Barril Steak House. You can reach them by phone at 418-906-6654 or via WhatsApp."
+    },
+    "privacidad_actualizacion": {"es": "Última actualización: 13 de agosto de 2026", "fr": "Dernière mise à jour : 13 août 2026", "en": "Last updated: August 13, 2026"},
+
     # Footer
     "footer_slogan": {"es": "Sabor a Leña", "fr": "Saveur de Feu de Bois", "en": "Wood-Fire Flavor"},
     "footer_encuentranos": {"es": "Encuéntranos", "fr": "Trouvez-nous", "en": "Find Us"},
     "footer_siguenos": {"es": "Síguenos", "fr": "Suivez-nous", "en": "Follow Us"},
+    "footer_enlaces_titulo": {"es": "Trabaja con Nosotros", "fr": "Travaillez avec Nous", "en": "Work With Us"},
     "footer_escribenos": {"es": "Escríbenos", "fr": "Écrivez-nous", "en": "Write to us"},
     "footer_derechos": {"es": "Todos los derechos reservados", "fr": "Tous droits réservés", "en": "All rights reserved"},
+    "footer_privacidad": {"es": "Política de Privacidad", "fr": "Politique de Confidentialité", "en": "Privacy Policy"},
 }
 
 

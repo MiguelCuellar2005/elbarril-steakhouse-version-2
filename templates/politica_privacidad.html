@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ t('privacidad_titulo') }} · El Barril Steak House{% endblock %}
+
+{% block content %}
+
+<section style="padding-top: 7rem;">
+    <div class="section-header">
+        <h2>{{ t('privacidad_titulo') }}</h2>
+        <p>{{ t('privacidad_sub') }}</p>
+    </div>
+
+    <div class="politica-contenido">
+        <p>{{ t('privacidad_intro') }}</p>
+
+        <h3>{{ t('privacidad_datos_titulo') }}</h3>
+        <p>{{ t('privacidad_datos_texto') }}</p>
+
+        <h3>{{ t('privacidad_uso_titulo') }}</h3>
+        <p>{{ t('privacidad_uso_texto') }}</p>
+
+        <h3>{{ t('privacidad_terceros_titulo') }}</h3>
+        <p>{{ t('privacidad_terceros_texto') }}</p>
+
+        <h3>{{ t('privacidad_conservacion_titulo') }}</h3>
+        <p>{{ t('privacidad_conservacion_texto') }}</p>
+
+        <h3>{{ t('privacidad_derechos_titulo') }}</h3>
+        <p>{{ t('privacidad_derechos_texto') }}</p>
+
+        <h3>{{ t('privacidad_responsable_titulo') }}</h3>
+        <p>{{ t('privacidad_responsable_texto') }}</p>
+
+        <p class="politica-fecha">{{ t('privacidad_actualizacion') }}</p>
+    </div>
+</section>
+
+{% endblock %}
