@@ -10,8 +10,8 @@ TEXTOS = {
 
     # Hero (Inicio)
     "hero_sub": {"es": "Sabor a leña · Food Truck & Steak House · Quebec", "fr": "Saveur de feu de bois · Food Truck & Steak House · Québec", "en": "Wood-fired flavor · Food Truck & Steak House · Quebec"},
-    "btn_ver_menu": {"es": "Ver Menú", "fr": "Voir le Menu", "en": "View Menu"},
-    "btn_donde_hoy": {"es": "Dónde estamos hoy", "fr": "Où sommes-nous aujourd'hui", "en": "Where we are today"},
+    "btn_ver_menu": {"es": "Antójate con el Menú", "fr": "Découvrez le Menu", "en": "Crave the Menu"},
+    "btn_donde_hoy": {"es": "Encuéntranos Hoy", "fr": "Trouvez-nous Aujourd'hui", "en": "Find Us Today"},
 
     # Tarjetas Inicio
     "tarjetas_titulo": {"es": "El Barril", "fr": "El Barril", "en": "El Barril"},
@@ -19,22 +19,25 @@ TEXTOS = {
     "card_menu_titulo": {"es": "Menú", "fr": "Menu", "en": "Menu"},
     "card_menu_desc": {"es": "Cortes premium a la leña", "fr": "Coupes premium au feu de bois", "en": "Premium wood-fired cuts"},
     "card_donde_titulo": {"es": "Dónde estamos", "fr": "Où nous trouver", "en": "Where we are"},
-    "card_donde_default": {"es": "Consulta nuestras redes para la ubicación de hoy", "fr": "Consultez nos réseaux pour l'emplacement d'aujourd'hui", "en": "Check our socials for today's location"},
+    "card_donde_default": {"es": "Siempre en movimiento — pregúntanos por WhatsApp dónde estamos hoy.", "fr": "Toujours en mouvement — demandez-nous sur WhatsApp où nous sommes aujourd'hui.", "en": "Always on the move — ask us on WhatsApp where we are today."},
     "card_promo_titulo": {"es": "Promociones", "fr": "Promotions", "en": "Promotions"},
-    "card_promo_default": {"es": "Sin promociones activas por ahora", "fr": "Aucune promotion active pour le moment", "en": "No active promotions right now"},
+    "card_promo_default": {"es": "Sin promos activas ahora, pero el menú siempre está que arde.", "fr": "Aucune promo active, mais notre menu est toujours prêt à vous surprendre.", "en": "No active promos right now, but our menu is always fired up."},
+    "badge_hoy": {"es": "Hoy", "fr": "Aujourd'hui", "en": "Today"},
+    "badge_proximo_evento": {"es": "Próximo Evento", "fr": "Prochain Événement", "en": "Upcoming Event"},
+    "badge_promo_activa": {"es": "Promo Activa", "fr": "Promo Active", "en": "Active Promo"},
 
     # Nosotros / Historia
     "historia_titulo": {"es": "De dónde venimos", "fr": "D'où nous venons", "en": "Where we come from"},
     "historia_default": {
-        "es": "Nuestra pasión nació entre el humo de las brasas y la tradición familiar de domar el fuego. No solo cocinamos carne; honramos el ritual del barril.",
-        "fr": "Notre passion est née dans la fumée des braises et la tradition familiale de dompter le feu. Nous ne faisons pas que cuisiner de la viande; nous honorons le rituel du barril.",
-        "en": "Our passion was born in the smoke of embers and the family tradition of taming fire. We don't just cook meat; we honor the ritual of the barril."
+        "es": "Nuestra pasión nació entre el humo denso de las brasas y la tradición familiar de domar el fuego con las manos. No solo cocinamos carne: la convertimos en fuego, humo y sabor. Honramos el ritual del barril en cada plato que sale de la parrilla.",
+        "fr": "Notre passion est née dans la fumée dense des braises et la tradition familiale de dompter le feu à mains nues. Nous ne faisons pas que cuisiner de la viande : nous la transformons en feu, en fumée et en saveur. Nous honorons le rituel du barril dans chaque assiette qui sort du gril.",
+        "en": "Our passion was born in the thick smoke of the embers and the family tradition of taming fire with bare hands. We don't just cook meat: we turn it into fire, smoke, and flavor. We honor the ritual of the barril in every plate that leaves the grill."
     },
 
     # Catering (Inicio)
     "catering_titulo": {"es": "Llevamos el Barril a tu evento", "fr": "Nous apportons le Barril à votre événement", "en": "We bring the Barril to your event"},
     "catering_sub": {"es": "Desde reuniones familiares hasta eventos corporativos", "fr": "Des réunions de famille aux événements corporatifs", "en": "From family gatherings to corporate events"},
-    "btn_contactar_catering": {"es": "Contactar para Catering", "fr": "Contacter pour Traiteur", "en": "Contact for Catering"},
+    "btn_contactar_catering": {"es": "Reserva tu Evento", "fr": "Réservez votre Événement", "en": "Book Your Event"},
 
     # Menú (página)
     "menu_titulo": {"es": "Nuestro Menú", "fr": "Notre Menu", "en": "Our Menu"},
@@ -43,6 +46,7 @@ TEXTOS = {
     "tab_resto": {"es": "Resto", "fr": "Restaurant", "en": "Restaurant"},
     "menu_vacio_ft": {"es": "Aún no hay platos cargados para el Food Truck.", "fr": "Aucun plat encore chargé pour le Food Truck.", "en": "No dishes loaded yet for the Food Truck."},
     "menu_vacio_resto": {"es": "Aún no hay platos cargados para el Resto.", "fr": "Aucun plat encore chargé pour le Restaurant.", "en": "No dishes loaded yet for the Restaurant."},
+    "menu_cta_titulo": {"es": "¿Ya se te antojó?", "fr": "Déjà tenté ?", "en": "Already craving it?"},
 
     # Galería
     "galeria_titulo": {"es": "Galería", "fr": "Galerie", "en": "Gallery"},

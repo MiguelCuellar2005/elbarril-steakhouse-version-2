@@ -215,6 +215,16 @@ ul   { list-style: none; }
 .categoria-placeholder {
     width: 100%; height: 100%;
     background: linear-gradient(135deg, var(--rojo), var(--negro));
+    transition: var(--transition);
+}
+.categoria-card:hover .categoria-placeholder { transform: scale(1.05); filter: brightness(1.15); }
+.categoria-badge {
+    position: absolute; top: 0.8rem; right: 0.8rem; z-index: 2;
+    background: var(--rojo); color: var(--blanco);
+    font-family: var(--font-title); font-size: 0.7rem;
+    text-transform: uppercase; letter-spacing: 1px;
+    padding: 0.35rem 0.8rem; border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.4);
 }
 .categoria-overlay {
     position: absolute; inset: 0;
@@ -227,7 +237,7 @@ ul   { list-style: none; }
     font-family: var(--font-title);
     font-size: 1.3rem; text-transform: uppercase;
 }
-.categoria-overlay span { font-size: 0.85rem; opacity: 0.8; }
+.categoria-overlay span { font-size: 0.88rem; opacity: 0.92; line-height: 1.4; }
 .ver-mas { text-align: center; margin-top: 2rem; }
 
 .categoria-titulo {
@@ -271,6 +281,17 @@ ul   { list-style: none; }
 .precio {
     font-family: var(--font-title);
     font-size: 1.2rem; color: var(--rojo); font-weight: 700;
+}
+
+/* ── CTA DE CIERRE (MENÚ) ─────────────────────────────────────────────────── */
+.menu-cta {
+    text-align: center; margin-top: 3.5rem;
+    padding: 2.5rem 1.5rem;
+    background: var(--gris-light); border-radius: var(--radius);
+}
+.menu-cta h3 {
+    font-family: var(--font-title); text-transform: uppercase;
+    font-size: 1.4rem; margin-bottom: 1.2rem; color: var(--negro);
 }
 
 /* ── NOSOTROS / HISTORIA ──────────────────────────────────────────────────── */
@@ -340,6 +361,26 @@ ul   { list-style: none; }
 .info-card h3 { font-family: var(--font-title); text-transform: uppercase; margin-bottom: 0.3rem; }
 .info-card p { color: var(--gris); }
 .contacto-mapa iframe { width: 100%; border-radius: var(--radius); }
+
+/* ── BANNER CATERING (HOME) ───────────────────────────────────────────────── */
+.catering-cta {
+    background: linear-gradient(135deg, var(--negro), var(--rojo-dark));
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+.catering-cta .section-header h2,
+.catering-cta .section-header p {
+    color: var(--blanco);
+}
+.catering-cta .section-header p { opacity: 0.85; }
+.catering-cta .section-header h2::after { background: var(--blanco); }
+.catering-cta .btn-primary {
+    background: var(--blanco); color: var(--rojo-dark);
+}
+.catering-cta .btn-primary:hover {
+    background: var(--gris-light); color: var(--rojo-dark);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
 
 /* ── POLÍTICA DE PRIVACIDAD ───────────────────────────────────────────────── */
 .politica-contenido {

@@ -180,7 +180,8 @@ def index():
         promociones=promociones_activas,
         eventos=proximos_eventos,
         historia=historia,
-        fotos_historia=fotos_historia
+        fotos_historia=fotos_historia,
+        hoy=hoy
     )
 
 

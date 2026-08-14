@@ -29,19 +29,31 @@
                 <span>{{ t('card_menu_desc') }}</span>
             </div>
         </a>
-        <div class="categoria-card">
-            <div class="categoria-placeholder"></div>
-            <div class="categoria-overlay">
-                <h3><i class="fas fa-location-dot"></i> {{ t('card_donde_titulo') }}</h3>
-                {% if eventos %}
+        {% if eventos %}
+            <a href="https://www.google.com/maps/search/?api=1&query={{ eventos[0].ubicacion | urlencode }}" target="_blank" class="categoria-card">
+                <div class="categoria-placeholder"></div>
+                <span class="categoria-badge">
+                    {% if eventos[0].fecha == hoy %}{{ t('badge_hoy') }}{% else %}{{ t('badge_proximo_evento') }}{% endif %}
+                </span>
+                <div class="categoria-overlay">
+                    <h3><i class="fas fa-location-dot"></i> {{ t('card_donde_titulo') }}</h3>
                     <span>{{ eventos[0].nombre_evento }} — {{ eventos[0].ubicacion }} ({{ eventos[0].fecha }})</span>
-                {% else %}
+                </div>
+            </a>
+        {% else %}
+            <a href="https://wa.me/14189066654" target="_blank" class="categoria-card">
+                <div class="categoria-placeholder"></div>
+                <div class="categoria-overlay">
+                    <h3><i class="fas fa-location-dot"></i> {{ t('card_donde_titulo') }}</h3>
                     <span>{{ t('card_donde_default') }}</span>
-                {% endif %}
-            </div>
-        </div>
-        <div class="categoria-card">
+                </div>
+            </a>
+        {% endif %}
+        <a href="{{ url_for('menu') }}" class="categoria-card">
             <div class="categoria-placeholder"></div>
+            {% if promociones %}
+                <span class="categoria-badge">{{ t('badge_promo_activa') }}</span>
+            {% endif %}
             <div class="categoria-overlay">
                 <h3><i class="fas fa-tag"></i> {{ t('card_promo_titulo') }}</h3>
                 {% if promociones %}
@@ -50,7 +62,7 @@
                     <span>{{ t('card_promo_default') }}</span>
                 {% endif %}
             </div>
-        </div>
+        </a>
     </div>
 </section>
 
@@ -80,7 +92,7 @@
     </div>
 </section>
 
-<section class="contacto">
+<section class="contacto catering-cta">
     <div class="section-header">
         <h2>{{ t('catering_titulo') }}</h2>
         <p>{{ t('catering_sub') }}</p>
