@@ -12,6 +12,7 @@
     --shadow:     0 4px 20px rgba(0,0,0,0.15);
     --radius:     12px;
     --transition: all 0.3s ease;
+    --textura-sutil: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
 }
 
 /* ── RESET ────────────────────────────────────────────────────────────────── */
@@ -601,6 +602,19 @@ ul   { list-style: none; }
 .footer-bottom p + p { margin-top: 0.4rem; }
 .footer-bottom a { color: #999; transition: var(--transition); }
 .footer-bottom a:hover { color: var(--rojo); }
+
+/* ── TEXTURA SUTIL (superficies planas) ───────────────────────────────────── */
+/* Grano fino en SVG inline, sin peso ni petición extra. Se aplica a todas las
+   superficies planas del inventario (fondo global, "Nosotros", cierre de
+   menú, y todas las páginas de admin vía .dashboard) desde este único lugar.
+   Cambiar --textura-sutil arriba en :root actualiza la textura en todo el sitio. */
+body,
+.nosotros,
+.menu-cta,
+.dashboard,
+.textura-sutil {
+    background-image: var(--textura-sutil);
+}
 
 /* ── RESPONSIVE ───────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
